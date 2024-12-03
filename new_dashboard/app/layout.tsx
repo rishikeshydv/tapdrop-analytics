@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} antialiased overflow-hidden`}
+        className={`${poppins.className} antialiased`}
       >
         {children}
       </body>

@@ -27,13 +27,18 @@ import GetTopEarning from "@/queries/GetTopEarning";
 import { useEffect, useState } from "react";
 import { GameData } from "@/types/GameData";
 import { FaSortDown } from "react-icons/fa6";
+import { useRouter } from 'next/navigation';
+
 export default function Right() {
+  const router = useRouter();
   const [gameData, setGameData] = useState<GameData[]>([]);
+  const [gameTrend, setGameTrend] = useState<string>("");
   const fetchData = async () => {
     const TopEarning = await GetTopEarning();
     setGameData(TopEarning);
   };
   useEffect(() => {
+    setGameTrend("topEarning");
     fetchData();
   }, [])
 
@@ -129,7 +134,7 @@ export default function Right() {
                 </p>
                 <FaSortDown className="w-4 h-4 mt-[-8px]" onClick={orderByRating_asc} />
               </TableHead>
-              <TableHead className='w-[12%] border flex justify-center items-center'>
+              <TableHead className='w-[14%] border flex justify-center items-center'>
                 <p>
                 Created Date
                 </p>
@@ -145,7 +150,7 @@ export default function Right() {
             {
               gameData.map((game) => (
                 <TableRow key={game.placeId}>
-                  <TableCell className="font-medium w-[30%]">
+                  <TableCell className="font-medium w-[30%] hover:cursor-pointer" onClick={()=>{router.push(`experience/${gameTrend}/${game.universeId}`)}}>
                     <div className="flex items-center gap-2">
                       <img
                         src={game.imageUrl}
@@ -163,7 +168,7 @@ export default function Right() {
                   <TableCell className='w-[15%] text-center'>{game.visits}</TableCell>
                   <TableCell className='w-[9%] text-center'>{game.genre}</TableCell>
                   <TableCell className='w-[9%] text-center'>{game.rating}</TableCell>
-                  <TableCell className='w-[12%] text-center'>{game.createdDate}</TableCell>
+                  <TableCell className='w-[14%] text-center'>{game.createdDate}</TableCell>
                 </TableRow>
               ))
             }
