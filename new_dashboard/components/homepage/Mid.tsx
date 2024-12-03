@@ -1,7 +1,6 @@
 import { TrendingUp, Play, ShoppingBag, Users } from 'lucide-react'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { ScrollArea } from "@/components/ui/scroll-area"
 
 interface NavItemProps {
   icon?: React.ReactNode
@@ -26,8 +25,8 @@ function NavItem({ icon, children, isActive }: NavItemProps) {
 
 export default function Mid() {
   return (
-    <div className="w-80 h-full border-r">
-      <ScrollArea className="h-full py-6">
+    <div className="w-80">
+      <div className="py-6">
         <div className="px-3 space-y-6">
           <div className="space-y-1 bg-white p-4 rounded-3xl">
             <h2 className="text-2xl font-semibold px-4 mb-4">Explore</h2>
@@ -41,8 +40,7 @@ export default function Mid() {
 
           <div className="space-y-1 bg-white p-4 rounded-3xl">
   <h2 className="font-semibold px-4 mb-2">Categories</h2>
-  {/* Use valid Tailwind classes for height and overflow */}
-  <div className="md:h-[25em] 2xl:h-full overflow-y-auto">
+  <div className="h-[400px] sm:h-[80vh] md:h-[70vh] lg:h-[46vh] xl:h-[43vh] 2xl:h-[50vh] overflow-y-auto">
     <NavItem isActive>All</NavItem>
     <NavItem>Top Trending</NavItem>
     <NavItem>Up-and-Coming</NavItem>
@@ -72,7 +70,7 @@ export default function Mid() {
 </div>
 
         </div>
-      </ScrollArea>
+      </div>
     </div>
   )
 }

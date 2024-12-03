@@ -73,16 +73,16 @@ export default function Right() {
   }
 
   return (
-    <div className="w-full p-6 bg-white rounded-3xl my-6">
-      <div className="flex items-center justify-between mb-6">
-        <div className="relative w-96">
+    <div className="w-full mr-[1em] p-6 bg-white rounded-3xl my-6 h-auto">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-5 md:gap-0 mb-6">
+        <div className="relative md:w-96">
           <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search experiences"
             className="pl-8"
           />
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-start md:items-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">Metrics (6/6)</Button>
@@ -99,42 +99,42 @@ export default function Right() {
       </div>
 
       <div className="rounded-md border">
-        <div className='h-[565px]'>
-        <Table>
+        <div>
+        <Table className='hidden md:grid'>
         <TableHeader className='text-sm'>
             <TableRow className='flex'>
-              <TableHead className="w-[30%] border">Games</TableHead>
-              <TableHead className='w-[10%]  border text-center flex justify-center items-center gap-[4px]'>
+              <TableHead className="w-[210px] md:w-[30%] border flex items-center justify-center md:justify-start  text-xs md:text-sm">Games</TableHead>
+              <TableHead className='w-[60px] md:w-[10%] border text-center flex flex-col md:flex-row justify-center items-center gap-[4px] text-xs md:text-sm'>
                 <div>CCU</div>
                  <div>
                  <FaSortDown className="w-4 h-4 mt-[-8px]" onClick={orderByCCU_asc} />
                   </div>             
                 </TableHead>
-              <TableHead className='w-[14%] border text-center flex justify-center items-center gap-[4px]'>
+              <TableHead className='w-[14%] md:w-[14%] border text-center flex flex-col md:flex-row justify-center items-center gap-[4px]  text-xs md:text-sm'>
                 <p>
                 Favorites
                 </p>
                 <FaSortDown className="w-4 h-4 mt-[-8px]" onClick={orderByFavoritedCount_asc} />
                 </TableHead>
-              <TableHead className='w-[15%] border text-center flex justify-center items-center gap-[4px]'>
+              <TableHead className='w-[15%] md:w-[15%] border text-center flex flex-col md:flex-row justify-center items-center gap-[4px]  text-xs md:text-sm'>
                 <p>
                 Visits
                 </p>
                 <FaSortDown className="w-4 h-4 mt-[-8px]" onClick={orderByVisits_asc} />
               </TableHead>
-              <TableHead className='w-[9%] border text-center flex justify-center items-center gap-[4px]'>
+              <TableHead className='w-[9%] md:w-[9%] border text-center flex flex-col md:flex-row justify-center items-center gap-[4px]  text-xs md:text-sm'>
                 <p>
                 Genre
                 </p>
                 <FaSortDown className="w-4 h-4 mt-[-8px]" onClick={orderByGenre} />
               </TableHead>
-              <TableHead className='w-[9%] border text-center flex justify-center items-center gap-[4px]'>
+              <TableHead className='w-[9%] md:w-[9%] border text-center flex flex-col md:flex-row justify-center items-center gap-[4px]  text-xs md:text-sm'>
                 <p>
                 Rating
                 </p>
                 <FaSortDown className="w-4 h-4 mt-[-8px]" onClick={orderByRating_asc} />
               </TableHead>
-              <TableHead className='w-[14%] border flex justify-center items-center'>
+              <TableHead className='w-[14%] md:w-[14%] border flex justify-center items-center  text-xs md:text-sm'>
                 <p>
                 Created Date
                 </p>
@@ -143,19 +143,67 @@ export default function Right() {
             </TableRow>
           </TableHeader>
           </Table>
-          <div className="overflow-y-auto h-[500px]">
+          <div className="overflow-y-auto h-[500px] sm:h-[80vh] md:h-[70vh] lg:h-[60vh] xl:h-[64vh] 2xl:h-[65vh]">
           <Table>
+        <TableHeader className='text-sm contents md:hidden'>
+            <TableRow>
+              <TableHead className=" border  text-xs md:text-sm">Games</TableHead>
+              <TableHead className=' border text-center text-xs md:text-sm'>
+                <div>CCU</div>
+                 <div className='flex justify-center items-center'>
+                 <FaSortDown className="w-4 h-4 mt-[-8px] hover:cursor-pointer" onClick={orderByCCU_asc} />
+                  </div>             
+                </TableHead>
+              <TableHead className='border text-center   text-xs md:text-sm'>
+                <p>
+                Favorites
+                </p>
+                <div className='flex justify-center items-center'>
+                <FaSortDown className="w-4 h-4 mt-[-8px] hover:cursor-pointer" onClick={orderByFavoritedCount_asc} />
+                </div>
+                </TableHead>
+              <TableHead className='border text-center  text-xs md:text-sm'>
+                <p>
+                Visits
+                </p>
+                <div className='flex justify-center items-center'>
+                <FaSortDown className="w-4 h-4 mt-[-8px] hover:cursor-pointer" onClick={orderByVisits_asc} />
+                </div>
+              </TableHead>
+              <TableHead className='border text-center text-xs md:text-sm'>
+                <p>
+                Genre
+                </p>
+                <div className='flex justify-center items-center'>
+                <FaSortDown className="w-4 h-4 mt-[-8px] hover:cursor-pointer" onClick={orderByGenre} />
+                </div>
+              </TableHead>
+              <TableHead className='border text-center  text-xs md:text-sm'>
+                <p>
+                Rating
+                </p>
+                <div  className='flex justify-center items-center'>
+                <FaSortDown className="w-4 h-4 mt-[-8px] hover:cursor-pointer" onClick={orderByRating_asc} />
+                </div>
+              </TableHead>
+              <TableHead className='border text-xs md:text-sm'>
+                <p>
+                Created Date
+                </p>
+    
+              </TableHead>
+            </TableRow>
+          </TableHeader>
           <TableBody>
-
             {
               gameData.map((game) => (
                 <TableRow key={game.placeId}>
-                  <TableCell className="font-medium w-[30%] hover:cursor-pointer" onClick={()=>{router.push(`experience/${gameTrend}/${game.universeId}`)}}>
+                  <TableCell className="font-medium md:w-[30%] hover:cursor-pointer text-xs md:text-sm" onClick={()=>{router.push(`experience/${gameTrend}/${game.universeId}`)}}>
                     <div className="flex items-center gap-2">
                       <img
                         src={game.imageUrl}
                         alt="Brookhaven"
-                        className="w-10 h-10 rounded"
+                        className="w-10 h-10 rounded hidden md:flex"
                       />
                       <div>
                         <div className="font-medium">{game.title}</div>
@@ -163,12 +211,12 @@ export default function Right() {
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className='w-[10%] text-center'>{game.playing}</TableCell>
-                  <TableCell className='w-[14%] text-center'>{game.favoritedCount}</TableCell>
-                  <TableCell className='w-[15%] text-center'>{game.visits}</TableCell>
-                  <TableCell className='w-[9%] text-center'>{game.genre}</TableCell>
-                  <TableCell className='w-[9%] text-center'>{game.rating}</TableCell>
-                  <TableCell className='w-[14%] text-center'>{game.createdDate}</TableCell>
+                  <TableCell className='md:w-[10%] text-center'>{game.playing}</TableCell>
+                  <TableCell className='md:w-[14%] text-center'>{game.favoritedCount}</TableCell>
+                  <TableCell className='md:w-[15%] text-center'>{game.visits}</TableCell>
+                  <TableCell className='md:w-[9%] text-center'>{game.genre}</TableCell>
+                  <TableCell className='md:w-[9%] text-center'>{game.rating}</TableCell>
+                  <TableCell className='md:w-[14%] text-center'>{game.createdDate}</TableCell>
                 </TableRow>
               ))
             }
@@ -179,21 +227,24 @@ export default function Right() {
         </div>
         </div>
       </div>
-      <div className="flex items-center justify-between mt-4">
+      {/* pagination */}
+      <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-center justify-between mt-3">
         <div className="text-sm text-muted-foreground">
           1-50 of 33,393 experiences
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col md:flex-row items-center gap-2">
           <Button variant="outline" disabled>
             Previous
           </Button>
+          <div className='flex items-center gap-2'>
           <Button variant="outline">1</Button>
           <Button variant="outline">2</Button>
-          <Button variant="outline">3</Button>
-          <Button variant="outline">4</Button>
-          <Button variant="outline">5</Button>
+          <Button variant="outline" className='hidden md:flex'>3</Button>
+          <Button variant="outline" className='hidden md:flex'>4</Button>
+          <Button variant="outline" className='hidden md:flex'>5</Button>
           <span>...</span>
           <Button variant="outline">668</Button>
+          </div>
           <Button variant="outline">
             Next
           </Button>
@@ -209,7 +260,7 @@ export default function Right() {
             </SelectContent>
           </Select>
         </div>
-      </div>
+      </div> 
     </div>
   )
 }
