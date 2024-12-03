@@ -23,7 +23,7 @@ type ExperienceUIProps = {
 const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,creator,imageUrl}:ExperienceUIProps) => {
 
   return (
-    <div className='bg-white w-full p-3'>
+    <div className='bg-white w-full'>
 <div className="p-6 space-y-6 mx-auto bg-gray-100 rounded-3xl">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">

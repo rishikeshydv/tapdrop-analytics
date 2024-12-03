@@ -42,7 +42,7 @@ export default function Mid() {
           <div className="space-y-1 bg-white p-4 rounded-3xl">
   <h2 className="font-semibold px-4 mb-2">Categories</h2>
   {/* Use valid Tailwind classes for height and overflow */}
-  <div className="h-[400px] overflow-y-auto">
+  <div className="md:h-[25em] 2xl:h-full overflow-y-auto">
     <NavItem isActive>All</NavItem>
     <NavItem>Top Trending</NavItem>
     <NavItem>Up-and-Coming</NavItem>

@@ -26,9 +26,9 @@ export default function Discover() {
 
   return (
     <div>
-        <div className='flex bg-gray-100 w-full'>
+        <div className='flex  w-full'>
         <Left />
-        <div className='w-full flex flex-col bg-white'>
+        <div className='w-full flex flex-col gap-4 p-4'>
 
         <ExperienceUI 
         playing={Number(gameData?.playing).toLocaleString() as string}
@@ -40,14 +40,14 @@ export default function Discover() {
         creator={gameData?.creator as string}
         imageUrl={gameData?.imageUrl as string}
         />
-        <div className='flex flex-col gap-3 bg-gray-100 p-4'>
-        <div className='flex gap-3'>
+        <div className='flex flex-col gap-3 bg-gray-100 p-4 rounded-3xl'>
+        <div className='flex flex-wrap gap-3'>
           <AreaGraph />
           <BarGraph />
           <AreaGraph />
           <BarGraph />
         </div>
-        <div className='flex gap-3'>
+        <div className='flex flex-wrap gap-3'>
           <DonutGraph />
           <PieGraph />
           <DonutGraph />

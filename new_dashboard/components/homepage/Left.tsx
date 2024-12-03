@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 export default function Left() {
   return (
-    <div className="flex flex-col gap-2 p-4 max-w-xs my-6">
+    <div className="flex flex-col gap-2 p-4 max-w-xs my-6 ">
       <div className="w-32">
         <Image
           src="/logo/logo.png"
