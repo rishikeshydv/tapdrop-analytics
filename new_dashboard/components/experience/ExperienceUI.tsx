@@ -23,9 +23,9 @@ type ExperienceUIProps = {
 const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,creator,imageUrl}:ExperienceUIProps) => {
 
   return (
-    <div className='bg-white w-full'>
+    <div className='bg-white w-full 2xl:mt-6'>
 <div className="p-6 space-y-6 mx-auto bg-gray-100 rounded-3xl">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-center justify-between">
         <div className="flex items-center gap-3">
           <img src={imageUrl} className="w-10 h-10 rounded-lg bg-primary/10" />
           <div>
@@ -49,7 +49,7 @@ const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,cr
             </SelectContent>
           </Select>
           <Button variant="outline">Share</Button>
-          <Button>Export</Button>
+          <Button variant="outline" className="bg-black text-white">Export</Button>
         </div>
       </div>
 

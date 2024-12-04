@@ -72,6 +72,8 @@ export default function Mid() {
         </div>
       </div>
     </div>
+
+
   )
 }
 
