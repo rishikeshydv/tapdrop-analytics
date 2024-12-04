@@ -6,16 +6,28 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import Signup from '@/firebase/auth/Signup'
+import AccountCreation from '@/queries/AccountCreation'
+import { useRouter } from 'next/navigation'
 
 export default function SignupForm() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [successMsg, setSuccessMsg] = useState<boolean>(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const router = useRouter()
+
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault()
     setError('')
+
+    //pasword atleast 6 characters
+    if (password.length < 6) {
+      setError('Password must be at least 6 characters')
+      return
+    }
 
     if (password !== confirmPassword) {
       setError('Passwords do not match')
@@ -23,11 +35,17 @@ export default function SignupForm() {
     }
 
     // Here you would typically send the data to your backend
-    console.log('Signup data:', { email, password })
+    await Signup(email, password)
+    await AccountCreation(email, password)
     // Reset form after successful submission
     setEmail('')
     setPassword('')
     setConfirmPassword('')
+    setSuccessMsg(true)
+
+    setTimeout(() => {
+      router.push('/auth/login')
+    }, 2000)
   }
 
   return (
@@ -83,8 +101,17 @@ export default function SignupForm() {
             <Button type="submit" className="w-full">Sign Up</Button>
           </CardFooter>
         </form>
+{
+            successMsg && (
+                <p className='text-sm font-semibold text-green-600 text-center'>Account Created Successfully.</p>
+            )
+}
+        <div className='text-sm text-center'>
+            Already a member? <a href="/auth/login" className="text-blue-500 font-semibold underline">Login</a>
+        </div>
       </CardContent>
     </Card>
+    
 </div>
   )
 }

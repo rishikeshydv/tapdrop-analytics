@@ -6,7 +6,6 @@ import { db } from "@/firebase/config";
 const auth = getAuth(app);
 export default async function Signup(email: string, password: string) {
 
-
   createUserWithEmailAndPassword(auth, email, password).then
   (userCredential => {
     // Signed in
