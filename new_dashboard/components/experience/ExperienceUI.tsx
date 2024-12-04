@@ -76,7 +76,7 @@ const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,cr
         </Card>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-6">
+      <div className="grid gap-2 md:grid-cols-6">
         <Card>
           <CardContent className="p-6">
             <div className="space-y-2">
