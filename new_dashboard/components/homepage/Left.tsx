@@ -1,8 +1,13 @@
+"use client"
 import React from 'react'
 import { Search, LogIn } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { useRouter } from 'next/navigation'
+
 export default function Left() {
+  const router = useRouter()
+
   return (
     <div className="flex flex-col justify-center items-center md:justify-start md:items-start gap-2 px-4 pt-4 max-w-xs mt-6">
       <div className="w-32">
@@ -11,7 +16,8 @@ export default function Left() {
           alt="SUPER BIZ"
           width={120}
           height={40}
-          className="w-full"
+          className="w-full hover:cursor-pointer"
+          onClick={() => router.push('/')}
         />
       </div>
       <div className="flex md:flex-col justify-center items-center">
