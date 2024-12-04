@@ -23,24 +23,28 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import GetTopEarning from "@/queries/GetTopEarning";
+import GetTopEarning from "@/queries/GetGames";
 import { useEffect, useState } from "react";
 import { GameData } from "@/types/GameData";
 import { FaSortDown } from "react-icons/fa6";
 import { useRouter } from 'next/navigation';
 
-export default function Right() {
+type RightProps = {
+  category: string
+}
+
+export default function Right({ category }: RightProps) {
   const router = useRouter();
   const [gameData, setGameData] = useState<GameData[]>([]);
   const [gameTrend, setGameTrend] = useState<string>("");
   const fetchData = async () => {
-    const TopEarning = await GetTopEarning();
+    const TopEarning = await GetTopEarning(category);
     setGameData(TopEarning);
   };
   useEffect(() => {
-    setGameTrend("topEarning");
+    setGameTrend(category);
     fetchData();
-  }, [])
+  }, [category])
 
   //order by ccu, ascending order
   const orderByCCU_asc = () => {
