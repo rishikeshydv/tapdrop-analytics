@@ -43,6 +43,8 @@ export default function Discover() {
             title={gameData?.title as string}
             creator={gameData?.creator as string}
             imageUrl={gameData?.imageUrl as string}
+            upvote={gameData?.upvote as string}
+            downvote={gameData?.downvote as string}
           />
 <div className="flex flex-col gap-4 bg-gray-100 p-6 rounded-3xl sm:gap-6 md:p-8 lg:p-10 xl:rounded-2xl 2xl:my-9">
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">

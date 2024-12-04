@@ -18,9 +18,11 @@ type ExperienceUIProps = {
   title : string,
   creator : string,
   imageUrl : string,
+  upvote: string,
+  downvote: string,
 }
 
-const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,creator,imageUrl}:ExperienceUIProps) => {
+const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,creator,imageUrl,upvote,downvote}:ExperienceUIProps) => {
 
   return (
     <div className='bg-white w-full 2xl:mt-6'>
@@ -74,7 +76,7 @@ const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,cr
         </Card>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-4">
+      <div className="grid gap-6 md:grid-cols-6">
         <Card>
           <CardContent className="p-6">
             <div className="space-y-2">
@@ -96,6 +98,22 @@ const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,cr
             <div className="space-y-2">
               <h3 className="text-sm text-muted-foreground">Favorites</h3>
               <p className="text-2xl font-bold">{favoritedCount}</p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-6">
+            <div className="space-y-2">
+              <h3 className="text-sm text-muted-foreground">Upvote</h3>
+              <p className="text-2xl font-bold">{upvote}</p>
+            </div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="p-6">
+            <div className="space-y-2">
+              <h3 className="text-sm text-muted-foreground">Downvote</h3>
+              <p className="text-2xl font-bold">{downvote}</p>
             </div>
           </CardContent>
         </Card>
