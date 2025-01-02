@@ -23,7 +23,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import GetTopEarning from "@/queries/GetGames";
+import GetGames from "@/queries/GetGames";
 import { useEffect, useState } from "react";
 import { GameData } from "@/types/GameData";
 import { FaSortDown } from "react-icons/fa6";
@@ -38,7 +38,7 @@ export default function Right({ category }: RightProps) {
   const [gameData, setGameData] = useState<GameData[]>([]);
   const [gameTrend, setGameTrend] = useState<string>("");
   const fetchData = async () => {
-    const TopEarning = await GetTopEarning(category);
+    const TopEarning = await GetGames(category);
     setGameData(TopEarning);
   };
   useEffect(() => {
@@ -76,6 +76,24 @@ export default function Right({ category }: RightProps) {
     setGameData(sorted);
   }
 
+  //download as a csv
+  const downloadCSV = () => {
+    const headers = [
+      "Title,Creator,Playing,Favorited Count,Visits,Genre,Rating,Created Date"
+    ];
+    const rows = gameData.map(game => 
+      `${game.title},${game.creator},${game.playing},${game.favoritedCount},${game.visits},${game.genre},${game.rating},${game.createdDate}`
+    );
+    const csv = headers.concat(rows).join("\n");
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'exported_data.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+  }
+
   return (
     <div className="w-full mr-[1em] p-6 bg-white rounded-3xl my-6 h-auto">
       <div className="flex flex-col md:flex-row items-center justify-between gap-5 md:gap-0 mb-6">
@@ -87,7 +105,7 @@ export default function Right({ category }: RightProps) {
           />
         </div>
         <div className="flex items-start md:items-center gap-2">
-          <DropdownMenu>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline">Metrics (6/6)</Button>
             </DropdownMenuTrigger>
@@ -97,8 +115,8 @@ export default function Right({ category }: RightProps) {
               <DropdownMenuItem>Favorites</DropdownMenuItem>
               <DropdownMenuItem>Rating</DropdownMenuItem>
             </DropdownMenuContent>
-          </DropdownMenu>
-          <Button>Export</Button>
+          </DropdownMenu> */}
+          <Button onClick={downloadCSV}>Export</Button>
         </div>
       </div>
 
@@ -232,11 +250,11 @@ export default function Right({ category }: RightProps) {
         </div>
       </div>
       {/* pagination */}
-      <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-center justify-between mt-3">
+      <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-end justify-end mt-3 mr-6">
         <div className="text-sm text-muted-foreground">
-          1-50 of 33,393 experiences
+          Displaying <span className='font-semibold mt-[-2px]'> {gameData.length} </span> out of {gameData.length} results
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-2">
+        {/* <div className="flex flex-col md:flex-row items-center gap-2">
           <Button variant="outline" disabled>
             Previous
           </Button>
@@ -263,7 +281,7 @@ export default function Right({ category }: RightProps) {
               <SelectItem value="100">100 / page</SelectItem>
             </SelectContent>
           </Select>
-        </div>
+        </div> */}
       </div> 
     </div>
 

@@ -68,10 +68,10 @@ export default function Discover() {
         <div className="w-full flex flex-col gap-4 p-4">
           <ExperienceUI
             playing={Number(gameData?.playing).toLocaleString() as string}
-            visits={Number(gameData?.visits).toLocaleString() as string}
+            visits={Number(gameData?.visits)}
             rating={gameData?.rating as string}
             favoritedCount={
-              Number(gameData?.favoritedCount).toLocaleString() as string
+              Number(gameData?.favoritedCount)
             }
             createdDate={gameData?.createdDate as string}
             title={gameData?.title as string}

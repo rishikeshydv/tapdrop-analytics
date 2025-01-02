@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${poppins.className} antialiased h-screen`}
+        className={`${poppins.className} antialiased h-screen bg-gray-100`}
       >
         {children}
         <Footer />

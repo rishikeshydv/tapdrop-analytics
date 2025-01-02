@@ -11,9 +11,9 @@ import {
 
 type ExperienceUIProps = {
   playing: string,
-  visits: string,
+  visits: number,
   rating: string,
-  favoritedCount: string,
+  favoritedCount: number,
   createdDate: string,
   title : string,
   creator : string,
@@ -24,9 +24,22 @@ type ExperienceUIProps = {
 
 const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,creator,imageUrl,upvote,downvote}:ExperienceUIProps) => {
 
+  const NumberConversion = (num: number) => {
+    if (num > 999 && num < 1000000) {
+      return (num / 1000).toFixed(1) + "K";
+    } else if (num >= 1000000 && num < 1000000000) {
+      return (num / 1000000).toFixed(1) + "M";
+    } else if (num >= 1000000000) {
+      return (num / 1000000000).toFixed(1) + "B";
+    } else {
+      return num.toString();
+    }
+  };
+
+
   return (
     <div className='bg-white w-full 2xl:mt-6'>
-<div className="p-6 space-y-6 mx-auto bg-gray-100 rounded-3xl">
+<div className="p-6 space-y-6 mx-auto bg-gray-100">
       <div className="flex flex-col md:flex-row gap-4 md:gap-0 items-center justify-between">
         <div className="flex items-center gap-3">
           <img src={imageUrl} className="w-10 h-10 rounded-lg bg-primary/10" />
@@ -55,8 +68,6 @@ const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,cr
         </div>
       </div>
 
-
-
       <div className="grid gap-6 md:grid-cols-2">
         <Card>
           <CardContent className="p-6">
@@ -81,7 +92,9 @@ const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,cr
           <CardContent className="p-6">
             <div className="space-y-2">
               <h3 className="text-sm text-muted-foreground">Total Visits</h3>
-              <p className="text-2xl font-bold">{visits}</p>
+              <p className="text-2xl font-bold">
+                {NumberConversion(visits)}
+              </p>
             </div>
           </CardContent>
         </Card>
@@ -89,7 +102,9 @@ const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,cr
           <CardContent className="p-6">
             <div className="space-y-2">
               <h3 className="text-sm text-muted-foreground">Rating</h3>
-              <p className="text-2xl font-bold">{rating}</p>
+              <p className="text-2xl font-bold">{
+               rating
+              }</p>
             </div>
           </CardContent>
         </Card>
@@ -97,7 +112,9 @@ const ExperienceUI = ({playing,visits,rating,favoritedCount,createdDate,title,cr
           <CardContent className="p-6">
             <div className="space-y-2">
               <h3 className="text-sm text-muted-foreground">Favorites</h3>
-              <p className="text-2xl font-bold">{favoritedCount}</p>
+              <p className="text-2xl font-bold">
+                {NumberConversion(favoritedCount)}
+              </p>
             </div>
           </CardContent>
         </Card>
